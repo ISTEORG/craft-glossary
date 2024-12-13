@@ -1,7 +1,7 @@
 {
-  "name": "codemonauts/craft-glossary",
+  "name": "isteorg/craft-glossary",
   "description": "Add glossaries with tooltips to Craft CMS.",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "type": "craft-plugin",
   "keywords": [
     "craft",
@@ -15,12 +15,16 @@
     {
       "name": "codemonauts",
       "homepage": "https://codemonauts.com"
+    },
+    {
+      "name": "isteorg",
+      "homepage": "https://iste.org"
     }
   ],
   "support": {
-    "source": "https://github.com/codemonauts/craft-glossary",
-    "docs": "https://plugins.codemonauts.com/plugins/glossary/Introduction.html",
-    "issues": "https://github.com/codemonauts/craft-glossary/issues"
+    "source": "https://github.com/isteorg/craft-glossary",
+    "docs": "https://github.com/isteorg/craft-glossary/blob/main/README.md",
+    "issues": "https://github.com/isteorg/craft-glossary/issues"
   },
   "require": {
     "craftcms/cms": "^4.0.0 || ^5.0.0"
