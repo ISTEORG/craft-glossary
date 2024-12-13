@@ -217,7 +217,24 @@ class Term extends Element
     /**
      * @inheritDoc
      */
-    protected static function defineFieldLayouts(string $source): array
+    public function attributeHtml(string $attribute): string
+    {
+        if ($attribute === 'caseSensitive') {
+            return $this->caseSensitive ? '<div data-icon="check" aria-label="' . Craft::t('app', 'Yes') . '""></div>' : '';
+        }
+
+        if ($attribute === 'matchSubstring') {
+            return $this->matchSubstring ? '<div data-icon="check" aria-label="' . Craft::t('app', 'Yes') . '""></div>' : '';
+        }
+
+        return parent::attributeHtml($attribute);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    protected static function defineFieldLayouts(?string $source): array
     {
         if ($source === '*') {
             $glossaries = GlossaryPlugin::getInstance()->getGlossaries()->getAllGlossaries();

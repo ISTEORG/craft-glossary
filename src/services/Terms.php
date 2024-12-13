@@ -100,6 +100,19 @@ class Terms extends Component
                         $variables = $term->getFieldValues();
                         $variables['term'] = $term;
 
+                        // Craft 5 logic: Use Entry to fetch additional data
+                        if (class_exists('craft\elements\Entry')) {
+                            $searchString = 'title:"' . $term . '"';
+                            $entry = \craft\elements\Entry::find()
+                                ->section('glossary')
+                                ->search($searchString)
+                                ->one();
+
+                            if ($entry) {
+                                $variables['caption'] = $entry->caption ?? '';
+                            }
+                        }
+
                         try {
                             $this->usedTerms[$term->id] = $view->renderTemplate($glossary->tooltipTemplate, $variables, 'site');
                         } catch (SyntaxError $e) {

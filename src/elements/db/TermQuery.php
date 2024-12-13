@@ -26,7 +26,8 @@ class TermQuery extends ElementQuery
     public function glossary($value): TermQuery
     {
         if ($value instanceof GlossaryElement) {
-            $this->glossaryId = $value->id;
+            // Support for Craft 4 and 5
+            $this->glossaryId = is_object($value) && property_exists($value, 'id') ? $value->id : $value;
         } elseif ($value !== null) {
             $this->glossaryId = GlossaryRecord::find()
                 ->select(['id'])

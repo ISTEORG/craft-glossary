@@ -182,7 +182,7 @@ class Glossary extends Element
     /**
      * @inheritDoc
      */
-    protected static function defineFieldLayouts(string $source): array
+    protected static function defineFieldLayouts(?string $source): array
     {
         return [];
     }
@@ -211,6 +211,22 @@ class Glossary extends Element
         }
 
         return parent::tableAttributeHtml($attribute);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function attributeHtml(string $attribute): string
+    {
+        if ($attribute === 'default') {
+            return $this->default ? '<div data-icon="check" aria-label="' . Craft::t('app', 'Yes') . '""></div>' : '';
+        }
+
+        if ($attribute === 'counter') {
+            return Term::find()->glossaryId($this->id)->count();
+        }
+
+        return parent::attributeHtml($attribute);
     }
 
     /**
