@@ -53,16 +53,10 @@ class Terms extends Component
         $originalText = $text;
 
         try {
-            $termTemplate = !empty($glossary->termTemplate) ? $glossary->termTemplate : '<span>{{ text }}</span>';
             $replacements = [];
             $terms = Term::find()->glossary($glossary)->all();
 
             foreach ($terms as $term) {
-                $template = Html::modifyTagAttributes($termTemplate, [
-                    'class' => 'glossary',
-                    'data-glossary-term' => 'term-' . $term->id,
-                ]);
-
                 $index = 0;
                 $words = $this->parseTerms($term);
 
@@ -76,9 +70,9 @@ class Terms extends Component
                     if (!$term->caseSensitive) {
                         $pattern .= 'i';
                     }
-                    $text = s($text)->replaceMatches($pattern, function ($matches) use ($term, $template, &$replacements, &$index, $view, $glossary) {
+                    $text = s($text)->replaceMatches($pattern, function ($matches) use ($term, &$replacements, &$index, $view, $glossary) {
                         try {
-                            $replacement = trim($view->renderString($template, [
+                            $replacement = trim($view->renderString('term/_render', [
                                 'term' => $term,
                                 'text' => $matches[0],
                             ], 'site'));
