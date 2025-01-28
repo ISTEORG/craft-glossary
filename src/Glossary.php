@@ -97,10 +97,8 @@ class Glossary extends Plugin
             $this->_cpInit();
         }
 
-        // Register the plugin's template path dynamically
-        $templatePath = $this->getBasePath() . '/templates';
-        Craft::$app->view->registerViewPath($templatePath);
-
+        // Set an alias for the plugin's templates directory
+        Craft::setAlias('@glossary-plugin-templates', $this->getBasePath() . '/templates');
     }
 
     /**
