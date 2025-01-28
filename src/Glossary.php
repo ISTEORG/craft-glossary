@@ -24,6 +24,7 @@ use craft\services\Gc;
 use craft\services\UserPermissions;
 use craft\web\twig\variables\CraftVariable;
 use craft\web\UrlManager;
+use craft\web\View;
 use yii\base\Event;
 
 /**
