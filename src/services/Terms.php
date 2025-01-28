@@ -73,7 +73,7 @@ class Terms extends Component
                     $text = s($text)->replaceMatches($pattern, function ($matches) use ($term, &$replacements, &$index, $view, $glossary) {
                         try {
                             $replacement = sprintf(
-                                '<span class="glossary" data-glossary-term="term-%d">%s</span>',
+                                '<span class="underline glossary" data-glossary-term="term-%d">%s</span>',
                                 $term->id,
                                 htmlspecialchars($matches[0], ENT_QUOTES, 'UTF-8')
                             );
