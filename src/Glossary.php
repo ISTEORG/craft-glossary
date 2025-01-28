@@ -97,8 +97,14 @@ class Glossary extends Plugin
             $this->_cpInit();
         }
 
-        // Set an alias for the plugin's templates directory
-        Craft::setAlias('@glossary-plugin-templates', $this->getBasePath() . '/templates');
+        // Register the plugin's template root
+        Event::on(
+            View::class,
+            View::EVENT_REGISTER_CP_TEMPLATE_ROOTS,
+            function (RegisterTemplateRootsEvent $event) {
+                $event->roots['glossary'] = $this->getBasePath() . '/templates';
+            }
+        );
     }
 
     /**
