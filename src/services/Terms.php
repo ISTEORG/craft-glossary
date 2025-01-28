@@ -109,7 +109,10 @@ class Terms extends Component
                         }
 
                         try {
-                            $this->usedTerms[$term->id] = $view->renderTemplate($glossary->tooltipTemplate, $variables, 'site');
+                            $this->usedTerms[$term->id] = sprintf(
+                                '<div class="rich-text p-16">%s</div>',
+                                htmlspecialchars($variables['term']->description, ENT_QUOTES, 'UTF-8')
+                            );
                         } catch (SyntaxError $e) {
                             Craft::error($e->getMessage(), 'glossary');
                         }
