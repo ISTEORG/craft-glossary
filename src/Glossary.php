@@ -101,7 +101,7 @@ class Glossary extends Plugin
         // Register the plugin's template root
         Event::on(
             View::class,
-            View::EVENT_REGISTER_TEMPLATE_ROOTS,
+            View::EVENT_REGISTER_SITE_TEMPLATE_ROOTS,
             function (RegisterTemplateRootsEvent $event) {
                 $event->roots['glossary'] = $this->getBasePath() . '/templates';
             }
