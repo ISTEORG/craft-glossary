@@ -96,6 +96,11 @@ class Glossary extends Plugin
         if (Craft::$app->getRequest()->getIsCpRequest()) {
             $this->_cpInit();
         }
+
+        // Register the plugin's template path dynamically
+        $templatePath = $this->getBasePath() . '/templates';
+        Craft::$app->view->registerViewPath($templatePath);
+
     }
 
     /**
