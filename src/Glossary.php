@@ -104,7 +104,7 @@ class Glossary extends Plugin
             View::class,
             View::EVENT_REGISTER_SITE_TEMPLATE_ROOTS,
             function (RegisterTemplateRootsEvent $event) {
-                $event->roots['glossary'] = $this->getBasePath() . '/templates';
+                $event->roots['glossary'] = __DIR__ . '/templates';
             }
         );
     }
