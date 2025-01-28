@@ -72,7 +72,7 @@ class Terms extends Component
                     }
                     $text = s($text)->replaceMatches($pattern, function ($matches) use ($term, &$replacements, &$index, $view, $glossary) {
                         try {
-                            $replacement = trim($view->renderTemplate('glossary/view/term', [
+                            $replacement = trim($view->renderTemplate('craft-glossary/view/_term', [
                                 'term' => $term,
                                 'text' => $matches[0],
                             ], 'site'));
