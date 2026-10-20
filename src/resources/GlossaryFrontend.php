@@ -17,9 +17,12 @@ class GlossaryFrontend extends AssetBundle
             'js/Glossary.js',
         ];
 
+        // light.css themes legacy mode, glossary.css accessible mode. Both
+        // ship either way; each is inert in the other's mode.
         $this->css = [
             'css/tippy.css',
             'css/light.css',
+            'css/glossary.css',
         ];
 
         parent::init();

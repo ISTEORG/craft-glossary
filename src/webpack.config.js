@@ -11,6 +11,8 @@ module.exports = {
     plugins: [
         new CopyPlugin({
             patterns: [
+                // Vendor only — a rule pointing at a hand-written file in
+                // resources/css would overwrite it on every build.
                 { from: "./node_modules/tippy.js/dist/tippy.css", to: "../css/tippy.css" },
                 { from: "./node_modules/tippy.js/themes/light.css", to: "../css/light.css" }
             ],

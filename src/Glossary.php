@@ -9,10 +9,12 @@ use codemonauts\glossary\fieldlayoutelements\SynonymsField;
 use codemonauts\glossary\services\Glossaries;
 use codemonauts\glossary\elements\Glossary as GlossaryElement;
 use codemonauts\glossary\fieldlayoutelements\TermField;
+use codemonauts\glossary\models\Settings;
 use codemonauts\glossary\services\Terms;
 use codemonauts\glossary\twigextensions\GlossaryFilter;
 use codemonauts\glossary\variables\GlossaryVariable;
 use Craft;
+use craft\base\Model;
 use craft\base\Plugin;
 use craft\events\DefineFieldLayoutFieldsEvent;
 use craft\events\RegisterComponentTypesEvent;
@@ -41,6 +43,11 @@ class Glossary extends Plugin
      * @inheritDoc
      */
     public bool $hasCpSection = true;
+
+    /**
+     * @inheritDoc
+     */
+    public bool $hasCpSettings = true;
 
     /**
      * @inheritDoc
@@ -172,6 +179,35 @@ class Glossary extends Plugin
         $navItem['subnav'] = $subNavs;
 
         return $navItem;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function createSettingsModel(): ?Model
+    {
+        return new Settings();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function settingsHtml(): ?string
+    {
+        return Craft::$app->getView()->renderTemplate('glossary/settings', [
+            'settings' => $this->getSettings(),
+        ]);
+    }
+
+    /**
+     * One switch for the whole feature: the <button> markup only works with the
+     * dialog JS, and that JS only binds to buttons.
+     *
+     * @return bool
+     */
+    public function useAccessiblePopups(): bool
+    {
+        return (bool)$this->getSettings()->accessiblePopups;
     }
 
     /**

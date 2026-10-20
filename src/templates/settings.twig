@@ -1,0 +1,11 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.lightswitchField({
+    label: 'Accessible popups'|t('glossary'),
+    instructions: 'Render each term as a button that opens its definition in a dialog: keyboard reachable, closable with Escape, and announced to screen readers. Leave this off to keep the original hover tooltips.'|t('glossary'),
+    warning: 'This changes the markup terms produce, so front-end CSS or JS written against the old `<span class="underline glossary">` may need updating.'|t('glossary'),
+    id: 'accessiblePopups',
+    name: 'accessiblePopups',
+    on: settings.accessiblePopups,
+    errors: settings.getErrors('accessiblePopups'),
+}) }}
